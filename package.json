@@ -1,0 +1,17 @@
+{
+  "name": "pi-agent-lab",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vitepress dev docs",
+    "build": "vitepress build docs",
+    "preview": "vitepress preview docs"
+  },
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "devDependencies": {
+    "vitepress": "1.6.4",
+    "vue": "3.5.40"
+  }
+}

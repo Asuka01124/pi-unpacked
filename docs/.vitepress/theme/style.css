@@ -1,0 +1,84 @@
+:root {
+	--vp-font-family-base: "Inter", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+	--vp-font-family-mono: "IBM Plex Mono", Consolas, monospace;
+	--vp-c-bg: #f8f8f3;
+	--vp-c-bg-alt: #efefe7;
+	--vp-c-bg-soft: #eeefe7;
+	--vp-c-text-1: #232a23;
+	--vp-c-text-2: #465247;
+	--vp-c-divider: #d9ded3;
+	--vp-c-brand-1: #276648;
+	--vp-c-brand-2: #245b41;
+	--vp-c-brand-3: #286347;
+	--vp-c-brand-soft: #e4ede2;
+	--lab-bg: #fffefa;
+	--lab-border: #d9ded3;
+	--lab-console: #182720;
+	--lab-console-text: #edf7ee;
+	--lab-console-muted: #b2c9b9;
+}
+
+.dark {
+	--vp-c-bg: #1a211d;
+	--vp-c-bg-alt: #18201b;
+	--vp-c-bg-soft: #242d26;
+	--vp-c-text-1: #eef3ec;
+	--vp-c-text-2: #bdcbbf;
+	--vp-c-divider: #3a483e;
+	--vp-c-brand-1: #a4deb8;
+	--vp-c-brand-2: #b9e8c8;
+	--vp-c-brand-3: #255e42;
+	--vp-c-brand-soft: #2d4435;
+	--lab-bg: #212a23;
+	--lab-border: #3a483e;
+	--lab-console: #131d17;
+}
+
+.VPDoc:not(.has-sidebar) .content-container {
+	max-width: 840px;
+}
+
+.vp-doc .chapter-label {
+	margin: 0 0 14px;
+	font-size: 14px;
+	font-weight: 700;
+	letter-spacing: 0.12em;
+	color: var(--vp-c-brand-1);
+}
+
+.vp-doc .chapter-label + h1 {
+	font-size: clamp(32px, 4.2vw, 52px);
+	line-height: 1.22;
+	letter-spacing: -0.045em;
+	text-wrap: balance;
+}
+
+.vp-doc .chapter-lede {
+	max-width: 39em;
+	margin: 18px 0 26px;
+	color: var(--vp-c-text-2);
+	font-size: 17px;
+	line-height: 1.85;
+}
+
+.vp-doc .chapter-task {
+	margin: 0 0 18px;
+	padding: 12px 18px;
+	border-left: 3px solid var(--vp-c-brand-1);
+	background: var(--vp-c-bg-soft);
+	color: var(--vp-c-text-1);
+}
+
+.vp-doc .chapter-task p {
+	margin: 0;
+}
+
+.vp-doc h2 {
+	margin-top: 52px;
+	padding-top: 26px;
+}
+
+.vp-doc :focus-visible {
+	outline: 2px solid var(--vp-c-brand-1);
+	outline-offset: 3px;
+}
