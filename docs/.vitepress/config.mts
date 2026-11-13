@@ -10,7 +10,13 @@ export default defineConfig({
 			{ text: "Pi 源码", link: "https://github.com/earendil-works/pi" },
 		],
 		sidebar: [
-			{ text: "从零学习 Agent", items: [{ text: "第一章：从聊天到行动", link: "/" }] },
+			{
+				text: "从零学习 Agent",
+				items: [
+					{ text: "第一章：从聊天到行动", link: "/" },
+					{ text: "第二章：Pi 怎样驱动一次运行", link: "/chapter-2" },
+				],
+			},
 		],
 		outline: { label: "本章目录", level: 2 },
 		returnToTopLabel: "回到顶部",

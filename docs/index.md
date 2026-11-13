@@ -31,7 +31,7 @@ import TraceReplay from './components/TraceReplay.vue'
 
 ## 走一遍工具调用
 
-先猜第二次请求会比第一次多出几条消息。然后点「下一步」，停在「请求模型 2」，看实际送进去的 JSON。
+先猜第二次请求会比第一次多出几条消息。然后点「下一步」，停在「请求模型 2」，看实验传给假模型的消息数组。
 
 <TraceReplay />
 
@@ -41,7 +41,7 @@ import TraceReplay from './components/TraceReplay.vue'
 工具结果的 `isError` 是 `true`，内容是找不到文件的原因，调用 ID 仍然是 `call_1`。模型据此解释自己为什么没读到日志。文件缺失也走完了两次模型请求。
 :::
 
-实验里的假模型按脚本返回消息，双方预先约定了 `read`。上面的 JSON 是程序实际交给假模型的消息。接入真实 API 时，还要按服务商的协议声明工具名称、描述和参数格式。
+这里用的是简化后的 Pi 消息格式。<sup><a href="#注释">注 1</a></sup>
 
 ## 模型提出请求，程序完成行动
 
@@ -58,24 +58,26 @@ import TraceReplay from './components/TraceReplay.vue'
 `stopReason` 则决定下一步：`stop` 表示返回最终回答，`toolUse` 表示有工具请求，`length` 表示输出碰到了长度上限。**工具执行完不代表任务已经结束**，模型还需要再收到结果，才能基于这份日志作答。
 
 ::: tip 为什么每次还要带上旧消息？
-本实验把对话上下文保存在程序的 `messages` 数组中，每次调用模型都显式传入它。假模型只读取数组最后一条来决定响应；真实 API 中，消息的具体格式和上下文管理方式取决于服务商。这里展示的是教学协议，不可直接当作任意服务商的请求格式。
+本实验把对话上下文保存在程序的 `messages` 数组中，每次调用都传入它。假模型按脚本运行，只看最后一条消息来决定返回什么。
 :::
 
-浏览器中的 `read` 返回的是打包进网页的示例日志，不能读取你电脑上的文件。接下来终端实验使用 Node.js 真正读取项目内的日志，两者共用循环和假模型。
+网页回放可以直接点着看。下面的动手练习在本地终端运行，会用 Node.js 读取项目里的示例日志。
 
 ## 自己写一个最小循环
 
-在 Pi Agent 实验室项目根目录（`pi-agent-lab`）执行下面的命令。示例用 Node.js 22.19 或更新版本，直接运行 TypeScript。
+项目里已经备好了假模型、示例日志和参考实现。运行练习只需要本地的 Node.js 22.19 或更新版本。可以在终端用 `node --version` 查看版本。
+
+在终端进入 `pi-agent-lab` 文件夹（里面有 `examples` 目录），先运行现成的参考示例：
 
 ```bash
 node ./examples/demo.ts success
 ```
 
-终端会打印每次发给模型的消息，最后应显示「模型请求 2 次，read 执行 1 次」。文件通过脚本自身的位置定位，因此从其他目录运行也不会改变读取目标。
+终端会打印每次发给假模型的消息，最后应显示「模型请求 2 次，read 执行 1 次」。
 
 先打开 `examples/fake-model.ts` 看一眼：第一次请求返回工具调用，收到工具结果后返回固定文本。它不会推理；日志里的 HTTP 401 也只提供了排查方向，不能据此断言缺少凭据就是唯一原因。
 
-现在打开 `examples/exercise.ts`，自己补上 `runExercise`，再加 `--exercise` 运行你的实现。文件里最初抛出的「请先实现」是练习入口，保留空白是为了让你亲手写循环。参数和返回类型可从 `examples/agent-loop.ts` 导入；`onStep` 是网页记录回放用的可选回调，第一次完成练习时可以先不处理它。
+跑通示例后，打开 `examples/exercise.ts`，填好 `runExercise` 函数。假模型和读文件函数会作为参数传进来，你只需要写调用它们的循环。后面的命令加上 `--exercise` 就会运行你写的版本。`onStep` 是网页回放用的可选回调，可以先跳过。
 
 1. 把用户问题放进消息列表，调用 `askModel(messages)`，再把模型的回复也存进去。
 2. 当 `stopReason` 是 `stop`，返回模型的最终文本。当它是 `toolUse`，把 `toolCall.arguments.path` 传给 `read`。
@@ -171,4 +173,20 @@ Pi 以前会把这类工具请求交给常规执行流程。流式 JSON 解析�
 
 当三种基础场景和截断验收都通过，并且你能不看源码画出「两次模型请求、一次读取」的过程，这一章就完成了。
 
-下一章从同一个 `read` 继续：日志太大怎么办？参数怎样校验？如何把文件错误变成模型能用的信息？
+下一章从同一个 `read` 继续。模型一次请求读两份日志时，Pi 怎样安排工具和用户的新输入？ [第二章：Pi 怎样驱动一次运行](./chapter-2.md)
+
+## 注释
+
+**注 1 · Pi 内部消息和 API 格式**
+
+`role: "toolResult"` 和 `toolCallId` 都是 Pi 内部的真实字段。实验把一次工具调用直接放在 `assistant.toolCall`，把结果内容写成字符串。Pi 把调用放在 `assistant.content` 数组里，工具结果的 `content` 也是内容块数组，结果消息还带有 `toolName` 和 `timestamp`。 [Pi 的消息类型](https://github.com/earendil-works/pi/blob/86a929acdd7021fbfbe5b434a4a6038218f52bd6/packages/ai/src/types.ts#L593)
+
+发请求时，Pi 的适配器会把内部消息转成服务商要求的格式。
+
+| API | 工具结果的位置 | 对应原调用的字段 |
+| --- | --- | --- |
+| OpenAI Responses | `input` 中的 `type: "function_call_output"` 项，结果放在 `output` | `call_id` |
+| OpenAI Chat Completions | `messages` 中的 `role: "tool"` 消息，结果放在 `content` | `tool_call_id` |
+| Anthropic Messages | `role: "user"` 消息的 `content` 中的 `type: "tool_result"` 块 | `tool_use_id` |
+
+[OpenAI Responses](https://developers.openai.com/api/docs/guides/function-calling) · [OpenAI Chat Completions](https://developers.openai.com/api/reference/resources/chat/subresources/completions/methods/create) · [Anthropic Messages](https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls)

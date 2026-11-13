@@ -23,7 +23,7 @@ const detail = computed(() => {
 		case "request":
 			return {
 				title: `第 ${step.turn} 次请求模型`,
-				label: "发给模型的消息",
+				label: "传给假模型的消息（实验格式）",
 				data: step.messages,
 			};
 		case "response":
