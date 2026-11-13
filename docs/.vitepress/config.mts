@@ -2,8 +2,9 @@ import { defineConfig } from "vitepress";
 
 export default defineConfig({
 	lang: "zh-CN",
-	title: "Pi Agent 实验室",
-	description: "从一次工具调用开始，动手理解 Pi 的 Agent 循环。",
+	base: process.env.PAGES_BASE_PATH ? `${process.env.PAGES_BASE_PATH.replace(/\/+$/, "")}/` : "/",
+	title: "拆开 Pi",
+	description: "动手复现一个编码 Agent",
 	themeConfig: {
 		nav: [
 			{ text: "教程", link: "/" },
@@ -11,7 +12,7 @@ export default defineConfig({
 		],
 		sidebar: [
 			{
-				text: "从零学习 Agent",
+				text: "动手复现一个编码 Agent",
 				items: [
 					{ text: "第一章：从聊天到行动", link: "/" },
 					{ text: "第二章：Pi 怎样驱动一次运行", link: "/chapter-2" },

@@ -67,7 +67,7 @@ import TraceReplay from './components/TraceReplay.vue'
 
 项目里已经备好了假模型、示例日志和参考实现。运行练习只需要本地的 Node.js 22.19 或更新版本。可以在终端用 `node --version` 查看版本。
 
-在终端进入 `pi-agent-lab` 文件夹（里面有 `examples` 目录），先运行现成的参考示例：
+在终端进入项目根目录（里面有 `package.json` 和 `examples`），先运行现成的参考示例：
 
 ```bash
 node ./examples/demo.ts success

@@ -58,7 +58,7 @@ Pi 从 `assistant.content` 提取全部 `toolCall`。在并发路径上，它先
 
 ## 动手实现两处调度
 
-在 `pi-agent-lab` 目录打开终端。项目已经提供假模型、日志、循环和验收脚本，用 Node.js 22.19 或更新版本即可运行。先看并发加 `steer` 的参考运行记录，再把插话改成排队追问。
+在项目根目录（里面有 `package.json` 和 `examples`）打开终端。项目已经提供假模型、日志、循环和验收脚本，用 Node.js 22.19 或更新版本即可运行。先看并发加 `steer` 的参考运行记录，再把插话改成排队追问。
 
 ```bash
 node ./examples/chapter-2/demo.ts
