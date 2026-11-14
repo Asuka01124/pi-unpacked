@@ -24,10 +24,10 @@
 - 内容：沿 CLI、`AgentSession`、`Agent.prompt()` 和 `agentLoop` 追踪一次 `read`。区分用户发起的一次运行和其中的多个模型轮次。看同一回复里的多个工具怎样调度，以及 `steer` 和 `followUp` 在何时进入对话。
 - 实验：让假模型一次发出两个调用，其中一个慢、一个失败。执行期间追加用户输入，对照事件顺序和下一次请求实际收到的消息。 [第二章](docs/chapter-2.md) · [Agent](https://github.com/earendil-works/pi/blob/86a929acdd7021fbfbe5b434a4a6038218f52bd6/packages/agent/src/agent.ts#L194) · [工具调度](https://github.com/earendil-works/pi/blob/86a929acdd7021fbfbe5b434a4a6038218f52bd6/packages/agent/src/agent-loop.ts#L519)
 
-### 3. 一个循环怎样接不同模型
+### 3. 一个循环怎样接不同模型（已完成）
 
 - 内容：从 `AgentMessage` 转成 `Message`，再由适配器生成服务商请求。沿响应反向追踪文本、工具参数增量和停止原因，说明模型选择、认证与请求格式分别由哪里处理。
-- 实验：对照录制的 OpenAI Responses 和 Anthropic Messages 请求与事件，最后选一家接入真实模型，跑通同一次 `read`。 [Responses 适配](https://github.com/earendil-works/pi/blob/86a929acdd7021fbfbe5b434a4a6038218f52bd6/packages/ai/src/api/openai-responses-shared.ts#L192) · [Anthropic 适配](https://github.com/earendil-works/pi/blob/86a929acdd7021fbfbe5b434a4a6038218f52bd6/packages/ai/src/api/anthropic-messages.ts#L808)
+- 实验：回放 OpenAI Responses 和 Anthropic Messages 请求与事件，再用自己的凭据接入 Anthropic，跑通同一次 `read`。 [第三章](docs/chapter-3.md) · [Responses 适配](https://github.com/earendil-works/pi/blob/86a929acdd7021fbfbe5b434a4a6038218f52bd6/packages/ai/src/api/openai-responses-shared.ts#L192) · [Anthropic 适配](https://github.com/earendil-works/pi/blob/86a929acdd7021fbfbe5b434a4a6038218f52bd6/packages/ai/src/api/anthropic-messages.ts#L808)
 
 ### 4. 设计编码工具
 

@@ -16,6 +16,7 @@ export default defineConfig({
 				items: [
 					{ text: "第一章：从聊天到行动", link: "/" },
 					{ text: "第二章：Pi 怎样驱动一次运行", link: "/chapter-2" },
+					{ text: "第三章：一个循环怎样接不同模型", link: "/chapter-3" },
 				],
 			},
 		],

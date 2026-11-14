@@ -103,7 +103,7 @@ node ./examples/chapter-2/demo.ts --exercise --verify
 3. 整批改走顺序执行路径。
 :::
 
-下一章会打开 `streamAssistantResponse()` 的另一端，看同一套内部消息怎样被转换成不同服务商的请求，以及流式参数怎样拼回工具调用。
+下一章会打开 `streamAssistantResponse()` 的另一端，看同一套内部消息怎样被转换成不同服务商的请求，以及流式参数怎样拼回工具调用。 [第三章：一个循环怎样接不同模型](./chapter-3.md)
 
 ## 注释
 

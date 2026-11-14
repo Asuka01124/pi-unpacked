@@ -31,6 +31,7 @@ jobs:
         run: |
           node ./examples/verify.ts --all
           node ./examples/chapter-2/demo.ts --verify
+          node ./examples/chapter-3/demo.ts --verify
       - name: 构建网站
         run: npm run build
         env:
