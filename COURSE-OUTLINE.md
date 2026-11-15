@@ -29,10 +29,10 @@
 - 内容：从 `AgentMessage` 转成 `Message`，再由适配器生成服务商请求。沿响应反向追踪文本、工具参数增量和停止原因，说明模型选择、认证与请求格式分别由哪里处理。
 - 实验：回放 OpenAI Responses 和 Anthropic Messages 请求与事件，再用自己的凭据接入 Anthropic，跑通同一次 `read`。 [第三章](docs/chapter-3.md) · [Responses 适配](https://github.com/earendil-works/pi/blob/86a929acdd7021fbfbe5b434a4a6038218f52bd6/packages/ai/src/api/openai-responses-shared.ts#L192) · [Anthropic 适配](https://github.com/earendil-works/pi/blob/86a929acdd7021fbfbe5b434a4a6038218f52bd6/packages/ai/src/api/anthropic-messages.ts#L808)
 
-### 4. 设计编码工具
+### 4. 设计编码工具（已完成）
 
 - 内容：从 `read`、`grep`、`edit` 和 `bash` 看参数校验、输出上限、错误和取消。细读 `edit` 的唯一匹配、重叠检查和同文件写入队列，以及 `read` 的按行续读和流式实现。
-- 实验：给长日志加 `offset`、`limit` 和续读提示，再实现带唯一性校验的文本替换。用重复片段和重叠修改检查失败结果能否帮助模型继续处理。 [read](https://github.com/earendil-works/pi/blob/86a929acdd7021fbfbe5b434a4a6038218f52bd6/packages/coding-agent/src/core/tools/read.ts#L231) · [edit](https://github.com/earendil-works/pi/blob/86a929acdd7021fbfbe5b434a4a6038218f52bd6/packages/coding-agent/src/core/tools/edit.ts#L138)
+- 实验：给长日志加 `offset`、`limit` 和续读提示，再实现带唯一性校验的文本替换。用重复片段和重叠修改检查失败结果能否帮助模型继续处理。 [第四章](docs/chapter-4.md) · [read](https://github.com/earendil-works/pi/blob/86a929acdd7021fbfbe5b434a4a6038218f52bd6/packages/coding-agent/src/core/tools/read.ts#L231) · [edit](https://github.com/earendil-works/pi/blob/86a929acdd7021fbfbe5b434a4a6038218f52bd6/packages/coding-agent/src/core/tools/edit.ts#L138)
 
 ### 5. `AGENTS.md`、Skills 与提示词模板
 
