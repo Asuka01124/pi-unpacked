@@ -18,6 +18,7 @@ export default defineConfig({
 					{ text: "第二章：Pi 怎样驱动一次运行", link: "/chapter-2" },
 					{ text: "第三章：一个循环怎样接不同模型", link: "/chapter-3" },
 					{ text: "第四章：设计编码工具", link: "/chapter-4" },
+					{ text: "第五章：AGENTS.md、Skills 与提示词模板", link: "/chapter-5" },
 				],
 			},
 		],

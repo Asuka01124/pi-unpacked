@@ -34,10 +34,10 @@
 - 内容：从 `read`、`grep`、`edit` 和 `bash` 看参数校验、输出上限、错误和取消。细读 `edit` 的唯一匹配、重叠检查和同文件写入队列，以及 `read` 的按行续读和流式实现。
 - 实验：给长日志加 `offset`、`limit` 和续读提示，再实现带唯一性校验的文本替换。用重复片段和重叠修改检查失败结果能否帮助模型继续处理。 [第四章](docs/chapter-4.md) · [read](https://github.com/earendil-works/pi/blob/86a929acdd7021fbfbe5b434a4a6038218f52bd6/packages/coding-agent/src/core/tools/read.ts#L231) · [edit](https://github.com/earendil-works/pi/blob/86a929acdd7021fbfbe5b434a4a6038218f52bd6/packages/coding-agent/src/core/tools/edit.ts#L138)
 
-### 5. `AGENTS.md`、Skills 与提示词模板
+### 5. `AGENTS.md`、Skills 与提示词模板（已完成）
 
 - 内容：项目指令怎样进入系统提示词，Skill 如何通过名称、描述和路径供模型发现，正文何时按需读取，`/skill:name` 和提示词模板又如何在用户输入阶段展开。
-- 实验：把同一份排障流程分别写成项目指令、Skill 和提示词模板。抓取三种请求，比较哪些文字在什么时候交给了模型。 [项目上下文加载](https://github.com/earendil-works/pi/blob/86a929acdd7021fbfbe5b434a4a6038218f52bd6/packages/coding-agent/src/core/resource-loader.ts#L260) · [Skill 提示词](https://github.com/earendil-works/pi/blob/86a929acdd7021fbfbe5b434a4a6038218f52bd6/packages/coding-agent/src/core/skills.ts#L358) · [显式调用](https://github.com/earendil-works/pi/blob/86a929acdd7021fbfbe5b434a4a6038218f52bd6/packages/coding-agent/src/core/agent-session.ts#L2312)
+- 实验：把同一份排障流程分别写成项目指令、Skill 和提示词模板。对照自动发现、手动调用等四种请求路径，比较哪些文字在什么时候交给了模型。 [第五章](docs/chapter-5.md) · [项目上下文加载](https://github.com/earendil-works/pi/blob/86a929acdd7021fbfbe5b434a4a6038218f52bd6/packages/coding-agent/src/core/resource-loader.ts#L260) · [Skill 提示词](https://github.com/earendil-works/pi/blob/86a929acdd7021fbfbe5b434a4a6038218f52bd6/packages/coding-agent/src/core/skills.ts#L358) · [显式调用](https://github.com/earendil-works/pi/blob/86a929acdd7021fbfbe5b434a4a6038218f52bd6/packages/coding-agent/src/core/agent-session.ts#L2312)
 
 ### 6. 用 Extensions 改造 Pi
 
@@ -103,4 +103,5 @@
 | 第 1 章 | 参数已经能解析成合法对象，为什么模型输出截断时仍要拦住调用？ | [截断时拒绝执行工具调用](https://github.com/earendil-works/pi/commit/351efc828b6fc5250fa50d6b32b20b0f0cb22cb4) |
 | 第 2 章 | 用户插话时尚未开始的工具会怎样？先结束的工具什么时候能显示完成？ | [推迟处理 `steer`](https://github.com/earendil-works/pi/commit/208a2cc123b52098233400649ed64157cb10d6e6) · [提前发出完成事件](https://github.com/earendil-works/pi/commit/759d5515278389195e2d48122b1ca1bcfedab776) |
 | 第 4 章 | 只返回一行时，旧版在内存里保留了多少内容？改成流式读取后，调用者还能看到同样的结果吗？ | [`read` 改用流式读取](https://github.com/earendil-works/pi/commit/3a7bb6f48cc64986608ffa1b0cb52c3ff938ef2a) |
+| 第 5 章 | 工具列表里只有 `bash` 时，模型能发现 Skills 吗？ | [仅有 `bash` 时保留 Skill 目录](https://github.com/earendil-works/pi/commit/1d6dbf9e3d60f129bf8ee513c82a98f222c57788) |
 | 第 10–11 章 | MCP 接入后，工具搜索和脚本调用为什么可以放在扩展层，同时继续走工具校验与钩子？ | [接入 MCP](https://github.com/earendil-works/pi/commit/27d2914457ccfc9fcb43e2fd08966cbb55538db4) · [重构到扩展层](https://github.com/earendil-works/pi/commit/2498ca492ec6ac9b266bf94a71dbaec61020ef83) |
