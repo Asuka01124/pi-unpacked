@@ -19,6 +19,7 @@ export default defineConfig({
 					{ text: "第三章：一个循环怎样接不同模型", link: "/chapter-3" },
 					{ text: "第四章：设计编码工具", link: "/chapter-4" },
 					{ text: "第五章：AGENTS.md、Skills 与提示词模板", link: "/chapter-5" },
+					{ text: "第六章：用 Extensions 改造 Pi", link: "/chapter-6" },
 				],
 			},
 		],

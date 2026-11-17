@@ -102,7 +102,7 @@ node ./examples/chapter-5/demo.ts --verify --exercise
 3. Pi 的输入处理层先展开模板，模型看到完整的用户消息。
 :::
 
-下一章会用 Extensions 注册一条真正参与运行的命令和工具。
+下一章会用 Extensions 注册一条真正参与运行的命令和工具。 [第六章：用 Extensions 改造 Pi](./chapter-6.md)
 
 ## 注释
 
