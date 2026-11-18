@@ -47,7 +47,7 @@
 ### 7. 权限到底在哪一层生效
 
 - 内容：项目授信决定哪些项目配置和扩展可以加载，工具暴露决定模型怎么发现工具，参数校验与执行前钩子控制调用，操作系统或虚拟化环境限制进程实际能做什么。Pi 默认继承启动进程的权限。
-- 实验：对同一项写入分别尝试隐藏工具、用 `tool_call` 拒绝和在容器中只读挂载，观察请求分别在哪一步被阻止。 [项目授信](https://github.com/earendil-works/pi/blob/86a929acdd7021fbfbe5b434a4a6038218f52bd6/packages/coding-agent/docs/security.md#understand-project-trust) · [执行前钩子](https://github.com/earendil-works/pi/blob/86a929acdd7021fbfbe5b434a4a6038218f52bd6/packages/agent/src/agent-loop.ts#L721)
+- 实验：对照同一次写入如何停在工具查找、参数校验、执行前审批和文件系统。可选容器实验验证真实的只读错误。 [第七章](docs/chapter-7.md) · [项目授信](https://github.com/earendil-works/pi/blob/86a929acdd7021fbfbe5b434a4a6038218f52bd6/packages/coding-agent/docs/security.md#understand-project-trust) · [执行前钩子](https://github.com/earendil-works/pi/blob/86a929acdd7021fbfbe5b434a4a6038218f52bd6/packages/agent/src/agent-loop.ts#L721)
 
 ### 8. 会话为什么是一棵树
 
