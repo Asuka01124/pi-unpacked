@@ -5,7 +5,13 @@ import { replay } from "../../examples/chapter-3/scenario.ts";
 import log from "../../examples/test.log?raw";
 
 const api = ref<Api>("responses");
-const view = ref<"first" | "stream" | "reply" | "second">("first");
+const stages = [
+	{ id: "first", label: "第一次请求" },
+	{ id: "stream", label: "工具调用的流事件" },
+	{ id: "reply", label: "循环收到的回复" },
+	{ id: "second", label: "第二次请求" },
+] as const;
+const view = ref<typeof stages[number]["id"]>("first");
 const position = ref(0);
 const traces = ref<Partial<Record<Api, Awaited<ReturnType<typeof replay>>>>>({});
 const error = ref("");
@@ -43,63 +49,51 @@ onMounted(async () => {
 </script>
 
 <template>
-	<section class="provider-replay" aria-label="API 请求和流事件对照">
-		<div class="provider-options">
-			<label>服务商接口
-				<select v-model="api" @change="position = 0">
-					<option value="responses">OpenAI Responses</option>
-					<option value="messages">Anthropic Messages</option>
-				</select>
-			</label>
-			<label>查看阶段
-				<select v-model="view">
-					<option value="first">第一次请求</option>
-					<option value="stream">工具调用的流事件</option>
-					<option value="reply">循环收到的回复</option>
-					<option value="second">第二次请求</option>
-				</select>
-			</label>
-		</div>
-		<template v-if="trace">
-			<div v-if="view === 'stream'" class="provider-events" role="group" aria-label="流事件浏览">
-				<button type="button" :disabled="position === 0" @click="position--">上一个事件</button>
-				<button type="button" :disabled="position >= events.length - 1" @click="position++">下一个事件</button>
-				<span role="status">{{ position + 1 }} / {{ events.length }}</span>
+	<section class="chapter-lab" aria-label="API 请求和流事件对照">
+		<fieldset class="lab-fieldset">
+			<legend>服务商接口</legend>
+			<div class="lab-options">
+				<button class="lab-button" type="button" :aria-pressed="api === 'responses'" @click="api = 'responses'; position = 0">OpenAI Responses</button>
+				<button class="lab-button" type="button" :aria-pressed="api === 'messages'" @click="api = 'messages'; position = 0">Anthropic Messages</button>
 			</div>
-			<pre tabindex="0" :aria-label="payloadLabel"><code>{{ JSON.stringify(payload, null, 2) }}</code></pre>
-			<p v-if="view === 'stream'" class="provider-arguments">已收到的参数文本 <code>{{ argumentText || '（空）' }}</code></p>
+		</fieldset>
+		<fieldset class="lab-fieldset">
+			<legend>查看阶段</legend>
+			<div class="lab-options">
+				<button v-for="stage in stages" :key="stage.id" class="lab-button" type="button" :aria-pressed="view === stage.id" @click="view = stage.id">
+					{{ stage.label }}
+				</button>
+			</div>
+		</fieldset>
+		<template v-if="trace">
+			<div class="lab-body" aria-live="polite">
+				<p v-if="view === 'first'">
+					请求在 <code>tools</code> 声明 <code>read</code>，参数定义放在
+					<code>{{ api === 'responses' ? 'parameters' : 'input_schema' }}</code>。
+				</p>
+				<template v-else-if="view === 'stream'">
+					<p><code>{{ events[position]?.type }}</code></p>
+					<p>已接收的参数文本 <code>{{ argumentText || '（空）' }}</code></p>
+				</template>
+				<p v-else-if="view === 'reply' && trace.firstReply?.stopReason === 'toolUse'">
+					循环收到 <code>{{ trace.firstReply.toolCall.name }}</code> 调用，参数
+					<code>{{ JSON.stringify(trace.firstReply.toolCall.arguments) }}</code>。
+				</p>
+				<p v-else-if="view === 'second'">
+					程序将读取结果作为 <code>{{ api === 'responses' ? 'function_call_output' : 'tool_result' }}</code>
+					交回模型，靠调用 ID 关联。
+				</p>
+			</div>
+			<div v-if="view === 'stream'" class="lab-options lab-body" role="group" aria-label="流事件浏览">
+				<button class="lab-button" type="button" :disabled="position === 0" @click="position--">上一个事件</button>
+				<button class="lab-button lab-button-primary" type="button" :disabled="position >= events.length - 1" @click="position++">下一个事件</button>
+				<span class="lab-label" role="status">{{ position + 1 }} / {{ events.length }}</span>
+			</div>
+			<details>
+				<summary>查看 JSON</summary>
+				<pre tabindex="0" :aria-label="payloadLabel"><code>{{ JSON.stringify(payload, null, 2) }}</code></pre>
+			</details>
 		</template>
-		<p v-else role="status">{{ error || "正在生成实验记录…" }}</p>
+		<p v-else class="lab-body" role="status">{{ error || "正在生成实验记录…" }}</p>
 	</section>
 </template>
-
-<style scoped>
-.provider-replay { margin: 20px 0 32px; padding: 16px; border: 1px solid var(--vp-c-divider); border-radius: 16px; }
-.provider-options, .provider-events { display: flex; flex-wrap: wrap; align-items: end; gap: 8px 16px; }
-.provider-options label { display: grid; gap: 4px; font-size: 14px; font-weight: 600; }
-.provider-options select, .provider-events button {
-	min-height: 44px;
-	max-width: 100%;
-	padding: 0 10px;
-	border: 1px solid var(--vp-c-divider);
-	border-radius: 8px;
-	color: var(--vp-c-text-1);
-	background: var(--vp-c-bg);
-	cursor: pointer;
-}
-.provider-events { margin-top: 12px; align-items: center; font-size: 14px; }
-.provider-events button:disabled { opacity: .55; cursor: default; }
-.provider-events button:not(:disabled):hover { background: var(--vp-c-brand-soft); }
-.provider-replay pre {
-	max-height: 24rem;
-	margin: 12px 0 0;
-	padding: 14px;
-	border-radius: 10px;
-	background: var(--vp-code-block-bg);
-	overflow: auto;
-	white-space: pre-wrap;
-	overflow-wrap: anywhere;
-}
-.provider-replay pre code { padding: 0; color: inherit; background: transparent; font-size: 13px; }
-.provider-replay .provider-arguments { margin: 12px 0 0; overflow-wrap: anywhere; }
-</style>

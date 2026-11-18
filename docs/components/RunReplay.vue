@@ -58,13 +58,13 @@ watch([mode, input], async ([execution, delivery], _previous, onCleanup) => {
 </script>
 
 <template>
-	<section class="run-replay" aria-label="比较补充要求的生效时机">
+	<section class="chapter-lab run-replay" aria-label="比较补充要求的生效时机">
 		<p class="run-context">Pi 正在读两份日志。你补了一句：</p>
 		<p class="run-quote">「{{ EXTRA_INPUT }}」</p>
 
-		<fieldset class="run-options">
+		<fieldset class="lab-fieldset">
 			<legend>补充消息的处理方式</legend>
-			<div class="run-choices">
+			<div class="lab-options">
 				<label v-for="choice in timings" :key="choice.value">
 					<input v-model="input" type="radio" :name="`${id}-input`" :value="choice.value">
 					<span>{{ choice.label }}</span>
@@ -104,9 +104,9 @@ watch([mode, input], async ([execution, delivery], _previous, onCleanup) => {
 		<details v-if="requests.length" class="run-more">
 			<summary>查看读取顺序和模型消息</summary>
 			<div class="run-detail">
-				<fieldset class="run-options">
+				<fieldset class="lab-fieldset">
 					<legend>工具调度</legend>
-					<div class="run-choices">
+					<div class="lab-options">
 						<label v-for="choice in modes" :key="choice.value">
 							<input v-model="mode" type="radio" :name="`${id}-mode`" :value="choice.value">
 							<span>{{ choice.label }}</span>
@@ -166,43 +166,7 @@ watch([mode, input], async ([execution, delivery], _previous, onCleanup) => {
 </template>
 
 <style scoped>
-.run-replay {
-	--run-text: #181818;
-	--run-muted: #575757;
-	--run-surface: #f5f5f5;
-	--run-pill: #e9e9e9;
-	--run-hover: #dfdfdf;
-	--run-active: #171717;
-	--run-on-active: #fff;
-	--run-line: #dadada;
-	--run-dot: #9b9b9b;
-	--run-accent: #0879ce;
-
-	margin: 24px 0;
-	padding: 24px 28px 16px;
-	border-radius: 20px;
-	background: var(--run-surface);
-	color: var(--run-text);
-	font-size: 15px;
-	line-height: 1.65;
-	overflow-wrap: anywhere;
-}
-
-.dark .run-replay {
-	--run-text: #f4f4f4;
-	--run-muted: #b8b8b8;
-	--run-surface: #242424;
-	--run-pill: #353535;
-	--run-hover: #424242;
-	--run-active: #f4f4f4;
-	--run-on-active: #171717;
-	--run-line: #444;
-	--run-dot: #777;
-	--run-accent: #6bbcff;
-}
-
-.run-replay p { margin: 0; }
-.run-context, .run-label { color: var(--run-muted); font-size: 14px; }
+.run-context, .run-label { color: var(--lab-muted); font-size: 14px; }
 .run-replay .run-quote {
 	margin: 6px 0 20px;
 	font-size: clamp(18px, 3.8vw, 22px);
@@ -210,48 +174,16 @@ watch([mode, input], async ([execution, delivery], _previous, onCleanup) => {
 	font-weight: 650;
 }
 
-.run-options { min-width: 0; margin: 0; padding: 0; border: 0; }
-.run-options legend { margin-bottom: 8px; padding: 0; font-weight: 600; }
-.run-choices { position: relative; display: flex; flex-wrap: wrap; gap: 8px; }
-.run-choices label { position: relative; max-width: 100%; cursor: pointer; }
-.run-choices input {
-	position: absolute;
-	width: 1px;
-	height: 1px;
-	overflow: hidden;
-	clip-path: inset(50%);
-}
-.run-choices span {
-	display: grid;
-	place-items: center;
-	min-height: 44px;
-	padding: 6px 14px;
-	border-radius: 999px;
-	background: var(--run-pill);
-	font-size: 14px;
-	font-weight: 600;
-	text-align: center;
-}
-.run-choices label:hover span { background: var(--run-hover); }
-.run-choices input:checked + span { background: var(--run-active); color: var(--run-on-active); }
-.run-choices input:focus-visible + span,
-.run-help button:focus-visible,
-.run-replay summary:focus-visible,
-.run-raw pre:focus-visible {
-	outline: 2px solid var(--run-active);
-	outline-offset: 3px;
-}
-
 .run-help button {
 	position: relative;
 	width: 44px;
 	min-height: 44px;
 	border-radius: 50%;
-	color: var(--run-muted);
+	color: var(--lab-muted);
 	font-weight: 600;
 	cursor: help;
 }
-.run-help button:hover, .run-help button[aria-expanded="true"] { background: var(--run-pill); }
+.run-help button:hover, .run-help button[aria-expanded="true"] { background: var(--lab-pill); }
 .run-help button::after {
 	content: "";
 	position: absolute;
@@ -265,10 +197,10 @@ watch([mode, input], async ([execution, delivery], _previous, onCleanup) => {
 	z-index: 1;
 	width: min(100%, 25rem);
 	padding: 12px 14px;
-	border: 1px solid var(--run-line);
+	border: 1px solid var(--lab-line);
 	border-radius: 10px;
 	background: var(--vp-c-bg);
-	color: var(--run-text);
+	color: var(--lab-text);
 	font-size: 14px;
 }
 .run-help-text p + p { margin-top: 6px; }
@@ -288,53 +220,13 @@ watch([mode, input], async ([execution, delivery], _previous, onCleanup) => {
 	width: 6px;
 	height: 6px;
 	border-radius: 50%;
-	background: var(--run-dot);
+	background: var(--lab-dot);
 }
-.run-story .run-highlight::before { background: var(--run-accent); }
+.run-story .run-highlight::before { background: var(--lab-accent); }
 .run-story .run-label { margin-bottom: 4px; }
 
-.run-more, .run-request { border-top: 1px solid var(--run-line); }
-.run-replay summary {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	gap: 12px;
-	min-height: 44px;
-	margin: 0;
-	padding: 6px 3px 6px 0;
-	list-style: none;
-	color: var(--run-muted);
-	font-size: 14px;
-	font-weight: 600;
-	cursor: pointer;
-}
-.run-replay summary::-webkit-details-marker { display: none; }
-.run-replay summary:hover { color: var(--run-text); }
-.run-replay summary::after {
-	content: "";
-	flex: 0 0 7px;
-	height: 7px;
-	border-right: 1.5px solid currentColor;
-	border-bottom: 1.5px solid currentColor;
-	transform: rotate(45deg);
-}
-.run-replay details[open] > summary::after { transform: rotate(225deg); }
 .run-detail { padding: 8px 0 0; }
 .run-replay .run-steps { margin: 10px 0 14px; font-size: 14px; }
 .run-messages li { display: grid; gap: 2px; padding: 4px 0 10px; }
-.run-replay li code { background: var(--run-pill); color: var(--run-text); }
-.run-raw pre {
-	max-height: 20rem;
-	margin: 0 0 10px;
-	padding: 12px;
-	overflow: auto;
-	border-radius: 10px;
-	background: var(--run-pill);
-	white-space: pre-wrap;
-}
-.run-raw pre code { padding: 0; background: transparent; color: inherit; font-size: 13px; }
-
-@media (max-width: 520px) {
-	.run-replay { padding: 20px 16px 12px; }
-}
+.run-raw pre { margin-top: 0; }
 </style>

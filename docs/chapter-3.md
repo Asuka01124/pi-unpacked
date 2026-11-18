@@ -17,7 +17,7 @@ import ProviderReplay from './components/ProviderReplay.vue'
 
 ## 找到同一次调用的 ID
 
-先选 OpenAI Responses，在「第一次请求」里找 `tools`。切到「工具调用的流事件」，点几次「下一个事件」，看 `{"pa` 怎样拼成 `{"path":"test.log"}`。再打开「循环收到的回复」，看看适配器交给循环的对象。最后在「第二次请求」里找到调用和结果共用的 ID，换成 Anthropic Messages 再对照一次。
+先选 OpenAI Responses，在「第一次请求」里展开「查看 JSON」，找到 `tools`。切到「工具调用的流事件」，点几次「下一个事件」，看 `{"pa` 怎样拼成 `{"path":"test.log"}`。再打开「循环收到的回复」，看看适配器交给循环的对象。最后在「第二次请求」的 JSON 里找到调用和结果共用的 ID，换成 Anthropic Messages 再对照一次。
 
 <ProviderReplay />
 

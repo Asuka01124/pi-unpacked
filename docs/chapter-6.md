@@ -17,7 +17,7 @@ import ExtensionReplay from './components/ExtensionReplay.vue'
 
 ## 从命令跟到会话恢复
 
-点「下一步」，对照每一步留下的数据。先留意 `activeTools` 怎么变，再看诊断结果的 `content` 和 `details` 各放了什么。「测试拦截」是专门给 `tool_call` 钩子做的离线探针。<sup><a href="#注释">注 1</a></sup>
+点「下一步」，先留意 `activeTools` 怎么变。到「诊断工具返回」时，展开「查看步骤和 JSON」，对照结果里的 `content` 和 `details`。「测试拦截」是专门给 `tool_call` 钩子做的离线探针。<sup><a href="#注释">注 1</a></sup>
 
 <ExtensionReplay />
 

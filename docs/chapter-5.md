@@ -17,7 +17,7 @@ import PromptResourceReplay from './components/PromptResourceReplay.vue'
 
 ## 同一段正文，四次观察
 
-先在下方切换来源，找出「先定位第一个 HTTP 401」第一次出现的位置。选「模型发现 Skill」时，比较第一次请求与读取 Skill 后的请求。再试手动调用，看看正文在哪个角色下面。展开示例文件可以核对输入的原始内容。
+切换来源后，展开「查看系统提示词」和「查看会话消息」，找出「先定位第一个 HTTP 401」第一次出现的位置。选「模型发现 Skill」时，比较第一次请求与读取 Skill 后的请求。再试手动调用，看看正文在哪个角色下面。展开示例文件可以核对原文。
 
 <PromptResourceReplay />
 
