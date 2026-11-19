@@ -52,7 +52,7 @@
 ### 8. 会话为什么是一棵树
 
 - 内容：JSONL 条目里的 `id`、`parentId` 和当前叶节点如何形成分支。追踪 `/tree`、会话恢复和分叉，理解 Pi 如何从磁盘记录重建当前分支的上下文。
-- 实验：从同一条报错开出两条调查分支，切换叶节点，打印各自重新构造出的模型上下文。 [会话路径和投影](https://github.com/earendil-works/pi/blob/86a929acdd7021fbfbe5b434a4a6038218f52bd6/packages/coding-agent/src/core/session-manager.ts#L390)
+- 实验：从同一条报错开出两条调查分支，切换叶节点，打印各自重新构造出的模型上下文。 [第八章](docs/chapter-8.md) · [会话路径和投影](https://github.com/earendil-works/pi/blob/86a929acdd7021fbfbe5b434a4a6038218f52bd6/packages/coding-agent/src/core/session-manager.ts#L390)
 
 ### 9. 上下文压缩怎样保住调查进度
 

@@ -36,6 +36,7 @@ jobs:
           node ./examples/chapter-5/demo.ts --verify
           node ./examples/chapter-6/demo.ts --verify
           node ./examples/chapter-7/demo.ts --verify
+          node ./examples/chapter-8/demo.ts --verify
       - name: 构建网站
         run: npm run build
         env:
