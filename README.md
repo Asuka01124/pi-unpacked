@@ -4,7 +4,7 @@
 
 《拆开 Pi》是一门中文动手教程。从一次 `read` 工具调用开始，先用 TypeScript 写出可以运行的小实验，再回到 [Pi 源码](https://github.com/earendil-works/pi/tree/86a929acdd7021fbfbe5b434a4a6038218f52bd6) 看它怎样实现同一个机制。
 
-**项目处于早期阶段，正在完善。** 目前已有前八章。后续会逐步补上上下文压缩、MCP、Code Mode 和子代理。
+**项目处于早期阶段，正在完善。** 目前已有前九章。后续会逐步补上 MCP、Code Mode 和子代理。
 
 ## 开始阅读
 
@@ -16,6 +16,7 @@
 - [第六章：用 Extensions 改造 Pi](https://asuka01124.github.io/pi-unpacked/chapter-6.html) · 实现 `/triage`，切换工具、诊断日志并恢复会话状态。
 - [第七章：权限到底在哪一层生效](https://asuka01124.github.io/pi-unpacked/chapter-7.html) · 追踪同一次写入在哪一步被拒绝。
 - [第八章：会话为什么是一棵树](https://asuka01124.github.io/pi-unpacked/chapter-8.html) · 从同一份 JSONL 恢复两条调查分支。
+- [第九章：上下文压缩怎样保住调查进度](https://asuka01124.github.io/pi-unpacked/chapter-9.html) · 用长日志触发压缩，对照切点、摘要与下一次请求。
 - [课程大纲](COURSE-OUTLINE.md) · 查看后续章节和计划中的实验。
 
 网页上的回放可以直接操作。离线实验自带固定响应和示例日志，无需 API Key。
@@ -40,4 +41,5 @@ node ./examples/chapter-5/demo.ts skill
 node ./examples/chapter-6/demo.ts
 node ./examples/chapter-7/demo.ts
 node ./examples/chapter-8/demo.ts
+node ./examples/chapter-9/demo.ts
 ```

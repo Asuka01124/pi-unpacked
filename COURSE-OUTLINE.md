@@ -57,7 +57,7 @@
 ### 9. 上下文压缩怎样保住调查进度
 
 - 内容：token 估算、触发阈值、切点、摘要和 `firstKeptEntryId`。观察 Pi 怎样处理切点落在一轮中间的情况，以及压缩后如何重建模型上下文。
-- 实验：用长工具输出触发压缩，对照摘要、保留的近期原文和下一次请求，验证 Agent 能否接着调查。 [压缩准备](https://github.com/earendil-works/pi/blob/86a929acdd7021fbfbe5b434a4a6038218f52bd6/packages/coding-agent/src/core/compaction/compaction.ts#L859) · [压缩后的会话投影](https://github.com/earendil-works/pi/blob/86a929acdd7021fbfbe5b434a4a6038218f52bd6/packages/coding-agent/src/core/session-manager.ts#L476)
+- 实验：用长工具输出触发压缩，对照摘要、保留的近期原文和下一次请求，验证 Agent 能否接着调查。 [第九章](docs/chapter-9.md) · [压缩准备](https://github.com/earendil-works/pi/blob/86a929acdd7021fbfbe5b434a4a6038218f52bd6/packages/coding-agent/src/core/compaction/compaction.ts#L859) · [压缩后的会话投影](https://github.com/earendil-works/pi/blob/86a929acdd7021fbfbe5b434a4a6038218f52bd6/packages/coding-agent/src/core/session-manager.ts#L476)
 
 ### 10. MCP 怎样变成 Pi 的工具
 

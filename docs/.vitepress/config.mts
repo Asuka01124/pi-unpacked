@@ -22,6 +22,7 @@ export default defineConfig({
 					{ text: "第六章：用 Extensions 改造 Pi", link: "/chapter-6" },
 					{ text: "第七章：权限到底在哪一层生效", link: "/chapter-7" },
 					{ text: "第八章：会话为什么是一棵树", link: "/chapter-8" },
+					{ text: "第九章：上下文压缩怎样保住调查进度", link: "/chapter-9" },
 				],
 			},
 		],
