@@ -23,6 +23,7 @@ export default defineConfig({
 					{ text: "第七章：权限到底在哪一层生效", link: "/chapter-7" },
 					{ text: "第八章：会话为什么是一棵树", link: "/chapter-8" },
 					{ text: "第九章：上下文压缩怎样保住调查进度", link: "/chapter-9" },
+					{ text: "第十章：MCP 怎样变成 Pi 的工具", link: "/chapter-10" },
 				],
 			},
 		],

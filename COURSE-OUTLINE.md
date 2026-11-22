@@ -62,7 +62,7 @@
 ### 10. MCP 怎样变成 Pi 的工具
 
 - 内容：从 `mcp.json` 追到 stdio 或 Streamable HTTP，再走过 `initialize`、`tools/list` 和 `tools/call`。看远端工具如何注册为 `mcp__<server>__<tool>`、结果如何转换、资源如何按 URI 读取，以及调用怎样进入现有钩子。
-- 实验：接一个本地假 CI 服务，提供查询失败任务的工具和按 URI 读取的日志资源。记录协议消息，再用同一个执行前钩子拦下一次 MCP 调用。 [MCP 客户端](https://github.com/earendil-works/pi/blob/86a929acdd7021fbfbe5b434a4a6038218f52bd6/packages/mcp/src/client.ts#L204) · [CLI 工具桥接](https://github.com/earendil-works/pi/blob/86a929acdd7021fbfbe5b434a4a6038218f52bd6/packages/coding-agent/src/extensions/mcp/tools.ts#L253)
+- 实验：接一个本地假 CI 服务，提供查询失败任务的工具和按 URI 读取的日志资源。记录协议消息，再用执行前钩子拦下一次 MCP 调用。 [第十章](docs/chapter-10.md) · [MCP 客户端](https://github.com/earendil-works/pi/blob/86a929acdd7021fbfbe5b434a4a6038218f52bd6/packages/mcp/src/client.ts#L204) · [CLI 工具桥接](https://github.com/earendil-works/pi/blob/86a929acdd7021fbfbe5b434a4a6038218f52bd6/packages/coding-agent/src/extensions/mcp/tools.ts#L253)
 
 ### 11. 工具太多时，模型怎样发现和组合它们
 
