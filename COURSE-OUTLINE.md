@@ -67,7 +67,7 @@
 ### 11. 工具太多时，模型怎样发现和组合它们
 
 - 内容：对照 `direct`、`deferred`、`codemode` 和 `hidden`。跟踪 `tool_search` 怎样把匹配的工具加入后续请求，以及 Code Mode 怎样用 QuickJS 执行模型生成的脚本、调用注入的工具并筛选输出。
-- 实验：用同一组 MCP 工具分别做直接调用、先搜索再调用和脚本批量调用。比较模型请求里的工具声明、实际调用和最终结果。 [MCP 工具暴露](https://github.com/earendil-works/pi/blob/86a929acdd7021fbfbe5b434a4a6038218f52bd6/packages/coding-agent/docs/mcp.md#control-tool-exposure) · [Code Mode 执行](https://github.com/earendil-works/pi/blob/86a929acdd7021fbfbe5b434a4a6038218f52bd6/packages/coding-agent/src/extensions/codemode/execute.ts#L525)
+- 实验：用同一组 MCP 工具分别做直接调用、先搜索再调用和脚本批量调用。比较模型请求里的工具声明、实际调用和最终结果。 [第十一章](docs/chapter-11.md) · [MCP 工具暴露](https://github.com/earendil-works/pi/blob/86a929acdd7021fbfbe5b434a4a6038218f52bd6/packages/coding-agent/docs/mcp.md#control-tool-exposure) · [Code Mode 执行](https://github.com/earendil-works/pi/blob/86a929acdd7021fbfbe5b434a4a6038218f52bd6/packages/coding-agent/src/extensions/codemode/execute.ts#L525)
 
 ### 12. 子代理怎样成为一种扩展
 
