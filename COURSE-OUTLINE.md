@@ -72,7 +72,7 @@
 ### 12. 子代理怎样成为一种扩展
 
 - 内容：仓库里的 `subagent` 扩展怎样启动独立的 Pi 进程、解析 JSON 事件、回收结果并传播取消。对照第二章的工具并发，理解多个子代理各自拥有的循环和上下文。
-- 实验：让两个只读子代理分别查日志和代码，由主 Agent 汇总证据。再注入一次启动失败和一次取消，观察父级得到的结果。 [子代理进程入口](https://github.com/earendil-works/pi/blob/86a929acdd7021fbfbe5b434a4a6038218f52bd6/packages/coding-agent/examples/extensions/subagent/index.ts#L389)
+- 实验：让两个只读子进程分别报告日志和代码证据，由父级汇总。再注入一次启动失败和一次取消，观察父级得到的结果。 [第十二章](docs/chapter-12.md) · [子代理进程入口](https://github.com/earendil-works/pi/blob/86a929acdd7021fbfbe5b434a4a6038218f52bd6/packages/coding-agent/examples/extensions/subagent/index.ts#L389)
 
 ### 13. 同一个 Agent 怎样服务不同界面
 

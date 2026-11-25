@@ -40,6 +40,7 @@ jobs:
           node ./examples/chapter-9/demo.ts --verify
           node ./examples/chapter-10/demo.ts --verify
           node ./examples/chapter-11/demo.ts --verify
+          node ./examples/chapter-12/demo.ts --verify
       - name: 构建网站
         run: npm run build
         env:
