@@ -20,7 +20,14 @@ function runChild(
 		// 现有文件不可能是目录，确保故障分支无法找到指定的可执行文件。
 		const program = mode === "spawn-failure" ? join(worker, "missing-executable") : process.execPath;
 		const args = [worker, task, ...(mode === "cancel" ? ["--hold"] : [])];
-		const child = spawn(program, args, { stdio: ["ignore", "pipe", "pipe"] });
+		const failToStart = () => resolve({ task, status: "failed", error: "无法启动子进程。", lines });
+		let child;
+		try {
+			child = spawn(program, args, { stdio: ["ignore", "pipe", "pipe"] });
+		} catch {
+			// 不同平台可能同步抛出错误，也可能通过下面的 error 事件报告。
+			return failToStart();
+		}
 		const rows = createInterface({ input: child.stdout, crlfDelay: Infinity });
 		let spawnError: Error | undefined;
 		let aborted = false;
@@ -39,7 +46,7 @@ function runChild(
 			rows.close();
 			signal.removeEventListener("abort", abort);
 			if (aborted) return resolve({ task, status: "aborted", error: "收到父级取消信号。", lines });
-			if (spawnError) return resolve({ task, status: "failed", error: "无法启动子进程。", lines });
+			if (spawnError) return failToStart();
 			if (code !== 0) {
 				return resolve({ task, status: "failed", error: stderr.trim() || `子进程退出：${terminationSignal ?? code}`, lines });
 			}
