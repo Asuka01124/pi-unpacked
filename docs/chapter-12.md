@@ -89,7 +89,7 @@ node ./examples/chapter-12/demo.ts --exercise --verify
 3. 可以。日志调查已经完成，但代码调查仍需补齐。
 :::
 
-下一章会从外部客户端连接 Pi，对照 JSON 事件流、双向 RPC 和会话控制。
+下一章会从外部客户端连接 Pi，对照 JSON 事件流、双向 RPC 和会话控制。 [第十三章：同一个 Agent 怎样服务不同界面](./chapter-13.md)
 
 ## 注释
 

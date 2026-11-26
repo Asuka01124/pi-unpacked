@@ -26,6 +26,7 @@ export default defineConfig({
 					{ text: "第十章：MCP 怎样变成 Pi 的工具", link: "/chapter-10" },
 					{ text: "第十一章：工具太多时，模型怎样发现和组合它们", link: "/chapter-11" },
 					{ text: "第十二章：子代理怎样成为一种扩展", link: "/chapter-12" },
+					{ text: "第十三章：同一个 Agent 怎样服务不同界面", link: "/chapter-13" },
 				],
 			},
 		],

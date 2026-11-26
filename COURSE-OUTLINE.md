@@ -77,7 +77,7 @@
 ### 13. 同一个 Agent 怎样服务不同界面
 
 - 内容：对照 TypeScript SDK、交互 TUI、JSON 模式和双向 RPC。跟踪会话事件如何驱动渲染，以及外部程序怎样发送 `prompt`、`steer` 和 `abort`。
-- 实验：做一个小型 RPC 客户端，实时显示工具事件，并在执行测试时取消运行。 [RPC 实现](https://github.com/earendil-works/pi/blob/86a929acdd7021fbfbe5b434a4a6038218f52bd6/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L404)
+- 实验：做一个小型 RPC 客户端，实时显示工具事件，并在模拟测试执行时取消运行。 [第十三章](docs/chapter-13.md) · [RPC 实现](https://github.com/earendil-works/pi/blob/86a929acdd7021fbfbe5b434a4a6038218f52bd6/packages/coding-agent/src/modes/rpc/rpc-mode.ts#L404)
 
 ### 14. 综合实验：修复一次 CI 故障
 

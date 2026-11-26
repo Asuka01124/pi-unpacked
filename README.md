@@ -4,7 +4,7 @@
 
 《拆开 Pi》是一门中文动手教程。从一次 `read` 工具调用开始，先用 TypeScript 写出可以运行的小实验，再回到 [Pi 源码](https://github.com/earendil-works/pi/tree/86a929acdd7021fbfbe5b434a4a6038218f52bd6) 看它怎样实现同一个机制。
 
-**项目处于早期阶段，正在完善。** 目前已有前十二章。后续会逐步补上集成接口和综合实验。
+**项目处于早期阶段，正在完善。** 目前已有前十三章。后续会逐步补上综合实验和进阶内容。
 
 ## 开始阅读
 
@@ -20,6 +20,7 @@
 - [第十章：MCP 怎样变成 Pi 的工具](https://asuka01124.github.io/pi-unpacked/chapter-10.html) · 接入本地 CI 服务，观察握手、工具调用和资源读取。
 - [第十一章：工具太多时，模型怎样发现和组合它们](https://asuka01124.github.io/pi-unpacked/chapter-11.html) · 对照直接声明、按需搜索与 Code Mode。
 - [第十二章：子代理怎样成为一种扩展](https://asuka01124.github.io/pi-unpacked/chapter-12.html) · 启动两个独立子进程，汇总完成、失败和取消时的证据。
+- [第十三章：同一个 Agent 怎样服务不同界面](https://asuka01124.github.io/pi-unpacked/chapter-13.html) · 用 RPC 接收工具事件，在运行中引导和取消。
 - [课程大纲](COURSE-OUTLINE.md) · 查看后续章节和计划中的实验。
 
 网页上的回放可以直接操作。离线实验自带固定响应和示例日志，无需 API Key。
@@ -48,4 +49,5 @@ node ./examples/chapter-9/demo.ts
 node ./examples/chapter-10/demo.ts
 node ./examples/chapter-11/demo.ts
 node ./examples/chapter-12/demo.ts
+node ./examples/chapter-13/demo.ts
 ```
